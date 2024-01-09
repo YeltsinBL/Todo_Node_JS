@@ -13,3 +13,8 @@ Iniciando en la programación con Node.JS
   - Async-Await: se puede utilizar con mjs en el cuerpo del archivo (top level await) con callback y paralelo, en cmj no se puede realizar, se puede utilizar en cjs utilizando IIFE, que ejecuta la funcion al instante de crearla que es secuencial.
 - Path
   - Para construir nuevas rutas de archivos, saber la extension del archivo, crear rutas absolutas,etc.
+- Ls
+  - Error: manejo de errores con callback y try-catch.
+  - Ls: obtener todos los detalles del archivo, aplicando todo lo aprendido.
+- Process
+  - Proceso para saber si se ejecuto bien la aplicacion y direccion de la ejecucion.
