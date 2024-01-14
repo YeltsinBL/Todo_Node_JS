@@ -1,0 +1,33 @@
+{
+  "name": "node-basico",
+  "version": "1.0.0",
+  "description": "Primer ejercicio con Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YeltsinBL/Todo_Node_JS.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "nodebasico"
+  ],
+  "author": "YeltsinBL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YeltsinBL/Todo_Node_JS/issues"
+  },
+  "homepage": "https://github.com/YeltsinBL/Todo_Node_JS#readme",
+  "dependencies": {
+    "picocolors": "1.0.0"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  }
+}
