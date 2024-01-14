@@ -18,3 +18,5 @@ Iniciando en la programación con Node.JS
   - Ls: obtener todos los detalles del archivo, aplicando todo lo aprendido.
 - Process
   - Proceso para saber si se ejecuto bien la aplicacion y direccion de la ejecucion.
+- Servidor
+  - Leer puertos disponibles, controllar error de puertos u otros y ejecutar el servidor
