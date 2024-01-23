@@ -33,6 +33,9 @@ Creación de Api usando solo Node con http y Express.
 - 02-Express
   - inicializamos: `npm init -y`
   - instalamos Express: `npm install express -E`
+  - express:
+    - manejo de métodos GET y POST.
+    - middleware: función que se ejecuta entre la petición y la respuesta.
 
 > Nota: Para reiniciar automáticamente el servidor es utilizando  `watch` o usando una dependencia `nodemon` en modo desarrollo y agregándolo al script del package.json.
 
