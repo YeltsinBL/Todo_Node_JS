@@ -26,7 +26,13 @@ Iniciando en la programación con Node.JS
 
 Creación de Api usando solo Node con http y Express.
 
-- http: creación básica de las rutas y contenido a mostrar (texto o imagen.)
+- 01-Node_Basico
+  - inicializamos: `npm init -y`
+  - http: creación básica de las rutas y contenido a mostrar (texto o imagen.)
+  - routing: manejo de métodos GET y POST
+- 02-Express
+  - inicializamos: `npm init -y`
+  - instalamos Express: `npm install express -E`
 
 > Nota: Para reiniciar automáticamente el servidor es utilizando  `watch` o usando una dependencia `nodemon` en modo desarrollo y agregándolo al script del package.json.
 
@@ -37,5 +43,7 @@ node --watch [ruta_y_archivo_ejecutar]
 # instalar nodemon
 npm i nodemon -D
 #agregando en el script del package.json
-"dev":"[archivo_ejecutar]"
+"dev:#":"[archivo_ejecutar]"
+# ejecutamos el script
+npm run dev:#
 ```
