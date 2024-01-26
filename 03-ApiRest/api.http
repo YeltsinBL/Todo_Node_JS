@@ -1,0 +1,9 @@
+### Obtener las peliculas
+GET http://localhost:1234/movies
+
+### Obtener las peliculas por Id
+GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+ ### Obtener las peliculas por genero
+GET http://localhost:1234/movies?genre=Action
+

@@ -50,3 +50,15 @@ npm i nodemon -D
 # ejecutamos el script
 npm run dev:#
 ```
+
+## 03-ApiRest
+
+Creación de ApiRest utilizando Express
+
+- app:
+  - Inicializar el proyecto: `npm init -y`
+  - Instalamos Express
+  - Levantamos el servidor usando watch
+  - Métodos utilizados: GET
+
+> Nota: se puede utilizar REGEX en las rutas:`app.get( '^/users/:userId([0-9]{6})', function( req, res )`.
