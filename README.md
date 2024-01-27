@@ -59,6 +59,10 @@ Creación de ApiRest utilizando Express
   - Inicializar el proyecto: `npm init -y`
   - Instalamos Express
   - Levantamos el servidor usando watch
-  - Métodos utilizados: GET, POST
+  - Métodos utilizados: GET, POST, PATCH
+  - Corrección del CORS: restringe si el recurso se puede usar en un origen diferente al mismo, solo funciona en los navegadores.
 
 > Nota: se puede utilizar REGEX en las rutas:`app.get( '^/users/:userId([0-9]{6})', function( req, res )`.
+>
+> Manejo de CORS
+>> CORS MANUAL: para usar en CORS en métodos normales (GET/HEAD/POST) solo he agrega la cabecera del 'Access-control-Allow-Origin' pero para los métodos complejos (PUT/PATCH/DELETE) se debe utilizar el CORS PRE-FLIGHT que requiere una petición especial que se llama OPTIONS.
