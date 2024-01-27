@@ -2,10 +2,10 @@
 GET http://localhost:1234/movies
 
 ### Obtener las peliculas por Id
-GET http://localhost:1234/movies/905ee894-2bb6-4b4f-9eff-5bd9b2c30b75
+GET http://localhost:1234/movies/3c4595a6-d0fc-44a1-bdfe-7ecae0fa7dc7
 
- ### Obtener las peliculas por genero
-GET http://localhost:1234/movies?genre=Action
+### Obtener las peliculas por genero
+GET http://localhost:1234/movies?genre=Drama
 
 ### Crear una pelicula
 POST http://localhost:1234/movies
@@ -13,7 +13,7 @@ Content-Type: application/json
 
 
 {
-  "title": "The Shawshank Redemption2",
+  "title": "The Shawshank Redemption 3",
   "year": 1994,
   "director": "Frank Darabont",
   "duration": 142,

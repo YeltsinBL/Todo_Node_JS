@@ -1,6 +1,7 @@
 const express = require('express')
 const crypto = require('node:crypto') // lo utilizaremos para crear una ID
 const movies = require('./movies.json')
+const { validationMovie } = require('./schemas/movies')
 const app = express()
 
 app.disable('x-powered-by')
@@ -11,7 +12,7 @@ app.get('/movies', (req, res) => {
   if (genre) {
     const filteredMovies = movies.filter(
       // Comparamos todos los elementos del genero en minúsculas
-      movie => movie.genre.some(g => g.toLowerCase === genre.toLocaleLowerCase())
+      movie => movie.genre.some(g => g.toLowerCase() === genre.toLocaleLowerCase())
     )
     return res.json(filteredMovies)
   }
@@ -26,21 +27,17 @@ app.get('/movies/:id', (req, res) => { // path-to-regexp
 })
 
 app.post('/movies', (req, res) => {
-  // obtenemos los datos del cuerpo de la request (json)
-  const {
-    title, genre, year,
-    director, duration, rate, poster
-  } = req.body
+  // validar los datos del json
+  const result = validationMovie(req.body)
+
+  // verificar si hubo un error o datos
+  if (result.error) {
+    return res.status(400).json({ error: JSON.parse(result.error.message) })
+  }
 
   const newMovie = {
     id: crypto.randomUUID(), // crea una id
-    title,
-    genre,
-    director,
-    year,
-    duration,
-    rate: rate ?? 0,
-    poster
+    ...result.data
   }
 
   // No se considera REST porque la información se esta guardando en memoria
