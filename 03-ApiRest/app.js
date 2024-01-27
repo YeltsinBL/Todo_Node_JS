@@ -1,8 +1,10 @@
 const express = require('express')
+const crypto = require('node:crypto') // lo utilizaremos para crear una ID
 const movies = require('./movies.json')
 const app = express()
 
 app.disable('x-powered-by')
+app.use(express.json())
 
 app.get('/movies', (req, res) => {
   const { genre } = req.query
@@ -21,6 +23,29 @@ app.get('/movies/:id', (req, res) => { // path-to-regexp
   const movie = movies.find(movie => movie.id === id)
   if (movie) return res.json(movie)
   res.status(404).json({ message: 'Película no encontrada' })
+})
+
+app.post('/movies', (req, res) => {
+  // obtenemos los datos del cuerpo de la request (json)
+  const {
+    title, genre, year,
+    director, duration, rate, poster
+  } = req.body
+
+  const newMovie = {
+    id: crypto.randomUUID(), // crea una id
+    title,
+    genre,
+    director,
+    year,
+    duration,
+    rate: rate ?? 0,
+    poster
+  }
+
+  // No se considera REST porque la información se esta guardando en memoria
+  movies.push(newMovie)
+  res.status(201).json(newMovie)
 })
 
 const PORT = process.env.PORT ?? 1234

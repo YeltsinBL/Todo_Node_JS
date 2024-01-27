@@ -2,8 +2,23 @@
 GET http://localhost:1234/movies
 
 ### Obtener las peliculas por Id
-GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+GET http://localhost:1234/movies/905ee894-2bb6-4b4f-9eff-5bd9b2c30b75
 
  ### Obtener las peliculas por genero
 GET http://localhost:1234/movies?genre=Action
 
+### Crear una pelicula
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+
+{
+  "title": "The Shawshank Redemption2",
+  "year": 1994,
+  "director": "Frank Darabont",
+  "duration": 142,
+  "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+  "genre": [
+    "Drama"
+  ]
+}

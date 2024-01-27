@@ -59,6 +59,6 @@ Creación de ApiRest utilizando Express
   - Inicializar el proyecto: `npm init -y`
   - Instalamos Express
   - Levantamos el servidor usando watch
-  - Métodos utilizados: GET
+  - Métodos utilizados: GET, POST
 
 > Nota: se puede utilizar REGEX en las rutas:`app.get( '^/users/:userId([0-9]{6})', function( req, res )`.
