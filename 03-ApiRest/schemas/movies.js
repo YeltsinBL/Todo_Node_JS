@@ -22,6 +22,13 @@ function validationMovie (object) {
   // devolvemos un objeto result que indica si hay un error o datos
   return movieSchema.safeParse(object)
 }
+
+function validatePartialMovie (input) {
+  // partial: Solo validamos los datos que se envían
+  return movieSchema.partial().safeParse(input)
+}
+
 module.exports = {
-  validationMovie
+  validationMovie,
+  validatePartialMovie
 }

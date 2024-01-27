@@ -1,7 +1,7 @@
 const express = require('express')
 const crypto = require('node:crypto') // lo utilizaremos para crear una ID
 const movies = require('./movies.json')
-const { validationMovie } = require('./schemas/movies')
+const { validationMovie, validatePartialMovie } = require('./schemas/movies')
 const app = express()
 
 app.disable('x-powered-by')
@@ -45,6 +45,26 @@ app.post('/movies', (req, res) => {
   res.status(201).json(newMovie)
 })
 
+app.patch('/movies/:id', (req, res) => {
+  const result = validatePartialMovie(req.body)
+  if (!result.success) {
+    return res.status(400).json({ error: JSON.parse(result.error.message) })
+  }
+
+  const { id } = req.params
+  const movieIndex = movies.findIndex(movie => movie.id === id)
+
+  if (movieIndex === -1) {
+    return res.status(404).json({ message: 'Película no encontrada' })
+  }
+  // Actualizamos la película
+  const updateMovie = {
+    ...movies[movieIndex],
+    ...result.data
+  }
+  movies[movieIndex] = updateMovie
+  return res.json(updateMovie)
+})
 const PORT = process.env.PORT ?? 1234
 
 app.listen(PORT, () => {
