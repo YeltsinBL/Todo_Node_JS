@@ -58,7 +58,7 @@ Creación de ApiRest utilizando Express
 - app:
   - Inicializar el proyecto: `npm init -y`
   - Instalamos Express
-  - Levantamos el servidor usando watch
+  - Levantamos el servidor usando `watch`
   - Métodos utilizados: GET, POST, PATCH
   - Corrección del CORS: restringe si el recurso se puede usar en un origen diferente al mismo, solo funciona en los navegadores.
 - web/index.html
@@ -74,3 +74,7 @@ Creación de ApiRest utilizando Express
 - CORS AUTOMÁTICO:
   - se puede corregir el CORS instalando una dependencia `npm i cors -E`
   - esa dependencia siempre dará acceso a todos los orígenes en el 'Access-control-Allow-Origin', por lo que se debe de agregar los orígenes permitidos.
+
+## MVC
+
+- Copiamos los mismos archivos del 03-ApiRest para usar la arquitectura MVC a lo realizado.
