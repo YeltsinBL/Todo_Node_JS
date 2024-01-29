@@ -69,13 +69,13 @@ Creación de ApiRest utilizando Express
 ### Manejo de CORS
 
 - CORS MANUAL:
-  - usar el CORS en métodos normales (GET/HEAD/POST) solo he agrega la cabecera del 'Access-control-Allow-Origin' pero 
+  - usar el CORS en métodos normales (GET/HEAD/POST) solo he agrega la cabecera del 'Access-control-Allow-Origin' pero
   - para los métodos complejos (PUT/PATCH/DELETE) se debe utilizar el CORS PRE-FLIGHT que requiere una petición especial que se llama OPTIONS.
 - CORS AUTOMÁTICO:
   - se puede corregir el CORS instalando una dependencia `npm i cors -E`
   - esa dependencia siempre dará acceso a todos los orígenes en el 'Access-control-Allow-Origin', por lo que se debe de agregar los orígenes permitidos.
 
-## MVC
+## 04-MVC
 
 - Copiamos los mismos archivos del 03-ApiRest para usar la arquitectura MVC a lo realizado.
 - Agregamos en el package.json el `type:module` para cambia de CSJ a MJS.
@@ -83,5 +83,6 @@ Creación de ApiRest utilizando Express
 - Routers: para separar todas las rutas del archivo principal.
 - Middleware: para separar el cors del archivo principal.
 - Models: para separar la lógica del negocio de las rutas.
+- Controllers: separar la llamada al Modelo desde las rutas.
 
 > Nota: en MJS no se puede importar directamente un json para leerlo: `import movies from './movies.json'`, se puede hacer agregándole al import directo con que tipo es `with {type:'json'}`, otra forma es usando el `node:fs` para leer el archivo, o creando nuestra propio `require` usando `node:module`
