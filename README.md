@@ -80,5 +80,7 @@ Creación de ApiRest utilizando Express
 - Copiamos los mismos archivos del 03-ApiRest para usar la arquitectura MVC a lo realizado.
 - Agregamos en el package.json el `type:module` para cambia de CSJ a MJS.
 - utils.js: para agregar las formas de leer el json.
+- Routers: para separar todas las rutas del archivo principal.
+- Middleware: para separar el cors del archivo principal.
 
 > Nota: en MJS no se puede importar directamente un json para leerlo: `import movies from './movies.json'`, se puede hacer agregándole al import directo con que tipo es `with {type:'json'}`, otra forma es usando el `node:fs` para leer el archivo, o creando nuestra propio `require` usando `node:module`
