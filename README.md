@@ -82,5 +82,6 @@ Creación de ApiRest utilizando Express
 - utils.js: para agregar las formas de leer el json.
 - Routers: para separar todas las rutas del archivo principal.
 - Middleware: para separar el cors del archivo principal.
+- Models: para separar la lógica del negocio de las rutas.
 
 > Nota: en MJS no se puede importar directamente un json para leerlo: `import movies from './movies.json'`, se puede hacer agregándole al import directo con que tipo es `with {type:'json'}`, otra forma es usando el `node:fs` para leer el archivo, o creando nuestra propio `require` usando `node:module`
