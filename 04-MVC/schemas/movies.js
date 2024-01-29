@@ -1,4 +1,4 @@
-const z = require('zod') // para realizar las validaciones
+import z from 'zod' // para realizar las validaciones
 
 // creación de schema para crear las validaciones
 const movieSchema = z.object({
@@ -18,17 +18,12 @@ const movieSchema = z.object({
   )
 })
 
-function validationMovie (object) {
+export function validationMovie (object) {
   // devolvemos un objeto result que indica si hay un error o datos
   return movieSchema.safeParse(object)
 }
 
-function validatePartialMovie (input) {
+export function validatePartialMovie (input) {
   // partial: Solo validamos los datos que se envían
   return movieSchema.partial().safeParse(input)
-}
-
-module.exports = {
-  validationMovie,
-  validatePartialMovie
 }

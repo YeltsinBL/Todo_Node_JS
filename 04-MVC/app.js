@@ -1,12 +1,14 @@
-const express = require('express')
-const crypto = require('node:crypto') // lo utilizaremos para crear una ID
-const cors = require('cors')
-const movies = require('./movies.json')
-const { validationMovie, validatePartialMovie } = require('./schemas/movies')
-const app = express()
+import express, { json } from 'express'
+import { randomUUID } from 'node:crypto' // lo utilizaremos para crear una ID
+import cors from 'cors'
+import { validationMovie, validatePartialMovie } from './schemas/movies.js'
+import { readJson } from './utils.js'
+// Leer el json
+const movies = readJson('./movies.json')
 
+const app = express()
 app.disable('x-powered-by')
-app.use(express.json())
+app.use(json())
 app.use(cors({
   origin: (origin, callback) => {
     // Lista de los Orígenes aceptados
@@ -52,7 +54,7 @@ app.post('/movies', (req, res) => {
   }
 
   const newMovie = {
-    id: crypto.randomUUID(), // crea una id
+    id: randomUUID(), // crea una id
     ...result.data
   }
 
