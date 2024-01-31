@@ -86,3 +86,7 @@ Creación de ApiRest utilizando Express
 - Controllers: separar la llamada al Modelo desde las rutas.
 
 > Nota: en MJS no se puede importar directamente un json para leerlo: `import movies from './movies.json'`, se puede hacer agregándole al import directo con que tipo es `with {type:'json'}`, otra forma es usando el `node:fs` para leer el archivo, o creando nuestra propio `require` usando `node:module`
+
+## 05-ConexionBD
+
+- Copiamos los mismos archivos del 04-MVC para agregar la conexión a una base de datos, en este caso SQL Server.

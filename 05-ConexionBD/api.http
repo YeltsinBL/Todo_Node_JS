@@ -1,0 +1,35 @@
+### Obtener las peliculas
+GET http://localhost:1234/movies
+
+### Obtener las peliculas por Id
+GET http://localhost:1234/movies/f9e17195-ea27-449c-afef-f56514a536de
+
+### Obtener las peliculas por genero
+GET http://localhost:1234/movies?genre=Drama
+
+### Crear una pelicula
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+
+{
+  "title": "The Shawshank Redemption 4",
+  "year": 1994,
+  "director": "Frank Darabont",
+  "duration": 142,
+  "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+  "genre": [
+    "Drama"
+  ]
+}
+
+### Actualizar una pelicula
+PATCH  http://localhost:1234/movies/f9e17195-ea27-449c-afef-f56514a536de
+Content-Type: application/json
+
+{
+    "year": 1993
+}
+
+### Borrar una pelicula
+DELETE  http://localhost:1234/movies/f9e17195-ea27-449c-afef-f56514a536de
