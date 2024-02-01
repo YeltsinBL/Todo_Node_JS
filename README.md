@@ -90,3 +90,7 @@ Creación de ApiRest utilizando Express
 ## 05-ConexionBD
 
 - Copiamos los mismos archivos del 04-MVC para agregar la conexión a una base de datos, en este caso SQL Server.
+- Instalamos la dependencia de `mssql: npm i mssql -E`
+- Realizamos las conexión a la BD.
+- Creación de los modelos conectados a la BD.
+- Modificar la llamada de modelo en el Controller para que utilice el que esta conectado a la BD.
