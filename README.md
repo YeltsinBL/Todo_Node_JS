@@ -95,4 +95,3 @@ Creación de ApiRest utilizando Express
 - Creación de los modelos conectados a la BD.
 - Modificar la llamada de modelo en el Controller para que utilice el que esta conectado a la BD.
 - Realizar inyección de dependencia para realizar los import.
-

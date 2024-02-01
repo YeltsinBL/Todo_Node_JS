@@ -2,7 +2,7 @@
 GET http://localhost:1234/movies
 
 ### Obtener las peliculas por Id
-GET http://localhost:1234/movies/F467D195-AAF2-41F7-ACBF-43718AA4622F
+GET http://localhost:1234/movies/2908E95C-A0B7-43DB-9951-6111CC4F8E13
 
 ### Obtener las peliculas por genero
 GET http://localhost:1234/movies?genre=Drama
@@ -13,23 +13,28 @@ Content-Type: application/json
 
 
 {
-  "title": "The Shawshank Redemption 2",
-  "year": 1991,
+  "title": "The Shawshank Redemption 6",
+  "year": 1995,
   "director": "Frank Darabont",
-  "duration": 141,
+  "duration": 145,
   "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
   "genre": [
-    "Drama"
+    "Drama", "Crime"
   ]
 }
 
 ### Actualizar una pelicula
-PATCH  http://localhost:1234/movies/f9e17195-ea27-449c-afef-f56514a536de
+PATCH  http://localhost:1234/movies/D7AED23E-CC63-413B-A7E0-43D8A04F51A0
 Content-Type: application/json
 
 {
-    "year": 1993
+  "title": "The Shawshank Redemption 8",
+  "year": 1998,
+  "director": "Frank Darabont",
+  "duration": 148,
+  "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+  "rate":9.8
 }
 
 ### Borrar una pelicula
-DELETE  http://localhost:1234/movies/f9e17195-ea27-449c-afef-f56514a536de
+DELETE  http://localhost:1234/movies/D7AED23E-CC63-413B-A7E0-43D8A04F51A0

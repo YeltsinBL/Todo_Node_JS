@@ -59,9 +59,28 @@ export class MovieModel {
       } = input
 
       const pool = await getConnection()
+
       // Obtenemos un UUID
       const uuidResult = await pool.request().query('select NEWID() uuid;')
       const [{ uuid }] = uuidResult.recordset
+      console.log(uuid)
+
+      // Obtenemos los ID de los géneros
+      console.log(genreInput)
+      genreInput.forEach(async element => {
+        const genreDataResult = await pool.request().input('name', mssql.VarChar, element)
+          .query('select id from genre where name=@name')
+        const [{ id }] = genreDataResult.recordset
+        console.log(id)
+
+        // Registramos la relación Película y genero
+        await pool.request()
+          .input('uuid', mssql.UniqueIdentifier, uuid)
+          .input('id_genre', mssql.Int, id)
+          .query('Insert into movie_genre (movie_id, genre_id) ' +
+          'values(@uuid,@id_genre)')
+      })
+
       // Guardamos los datos
       await pool.request()
         .input('uuid', mssql.UniqueIdentifier, uuid)
@@ -77,7 +96,7 @@ export class MovieModel {
       const movie = await pool.request()
         .input('value_id', mssql.UniqueIdentifier, uuid)
         .query('Select * from Movies WHERE id=@value_id')
-      console.log(movie.recordset)
+      // console.log(movie.recordset)
       pool.close()
       return movie.recordset
     } catch (error) {
@@ -86,10 +105,43 @@ export class MovieModel {
   }
 
   static async delete ({ id }) {
+    try {
+      const pool = await getConnection()
+      await pool.request()
+        .input('value_id', mssql.VarChar, id)
+        .query(
+          'delete from movies WHERE id=convert(uniqueidentifier,@value_id)')
 
+      pool.close()
+      return true
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   static async update ({ id, input }) {
-
+    try {
+      const { title, year, duration, director, rate, poster } = input
+      const pool = await getConnection()
+      await pool.request()
+        .input('value_id', mssql.VarChar, id)
+        .input('title', mssql.VarChar, title)
+        .input('year', mssql.Int, year)
+        .input('director', mssql.VarChar, director)
+        .input('duration', mssql.Int, duration)
+        .input('poster', mssql.Text, poster)
+        .input('rate', mssql.Decimal(2, 1), rate)
+        .query('update movies ' +
+        'set title=@title, year=@year, director=@director,duration=@duration, poster=@poster, rate=@rate ' +
+        'WHERE id=convert(uniqueidentifier,@value_id)')
+      const movie = await pool.request()
+        .input('value_id', mssql.VarChar, id)
+        .query('Select * from Movies WHERE id=convert(uniqueidentifier,@value_id)')
+      console.log(movie.recordset)
+      pool.close()
+      return movie.recordset
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
