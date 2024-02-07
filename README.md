@@ -95,3 +95,13 @@ Creación de ApiRest utilizando Express
 - Creación de los modelos conectados a la BD.
 - Modificar la llamada de modelo en el Controller para que utilice el que esta conectado a la BD.
 - Realizar inyección de dependencia para realizar los import.
+
+## 06-RealTimeChat
+
+Realizar una chat en tiempo real con socket.
+
+### Instalaciones de Dependencias
+
+- Express: para el servidor.
+- Morgan: logger para visualizar la traza de las request en express.
+- Socket.io: para realizar las request en tiempo real.
