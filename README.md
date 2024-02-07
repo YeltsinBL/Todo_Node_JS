@@ -105,3 +105,5 @@ Realizar una chat en tiempo real con socket.
 - Express: para el servidor.
 - Morgan: logger para visualizar la traza de las request en express.
 - Socket.io: para realizar las request en tiempo real.
+- @libsql/client: para usar la base de datos
+- dotenv: para leer variables de entorno
