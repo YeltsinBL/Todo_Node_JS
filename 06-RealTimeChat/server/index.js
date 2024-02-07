@@ -11,8 +11,16 @@ const server = createServer(app) // Creamos el servidor HTTP
 const io = new Server(server) // Creamos el servidor del Socket.io
 
 // Cada vez que el cliente se conecta al servidor io
-io.on('connection', () => {
-  console.log('a user has connected')
+io.on('connection', (socket) => {
+  console.log('as user has connected')
+  // cada vez que el cliente se desconecte
+  socket.on('disconnect', () => {
+    console.log('as user has disconnected')
+  })
+
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg)
+  })
 })
 
 app.use(logger('dev'))
