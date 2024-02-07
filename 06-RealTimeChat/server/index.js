@@ -32,7 +32,7 @@ await db.execute(`
 `)
 
 // Cada vez que el cliente se conecta al servidor io
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   console.log('as user has connected')
   // cada vez que el cliente se desconecte
   socket.on('disconnect', () => {
@@ -52,6 +52,22 @@ io.on('connection', (socket) => {
     }
     io.emit('chat message', msg, result.lastInsertRowid.toString())
   })
+
+  // console.log(socket.handshake.auth) // para ver los mensajes puestos en el socket del cliente(html)
+  if (!socket.recovered) { // recuperar los mensajes sin conexión
+    try {
+      const result = await db.execute({
+        sql: 'select id, content from messages where id > ?',
+        args: [socket.handshake.auth.serverOffset ?? 0]
+      })
+
+      result.rows.forEach(row => {
+        socket.emit('chat message', row.content, row.id.toString())
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 })
 
 app.use(logger('dev'))

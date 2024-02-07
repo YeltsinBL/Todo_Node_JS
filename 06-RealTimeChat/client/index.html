@@ -6,17 +6,22 @@
     <title>Chat en Tiempo Real con Socket</title>
     <script type="module">
         import { io } from 'https://cdn.socket.io/4.7.4/socket.io.esm.min.js'
-        const socket = io()
+        const socket = io({
+            auth: {
+                serverOffset: 0 // saber en que mensaje se ha quedado el cliente
+            }
+        })
 
         const form = document.getElementById('form')
         const input = document.getElementById('input')
         const messages = document.getElementById('messages')
 
         // recibir los mensajes de los otros usuarios
-        socket.on('chat message', (msg) => {
+        socket.on('chat message', (msg, serverOffset) => {
             const item = `<li>${msg}</li>`
             // insertamos el elemento html antes de que termine
             messages.insertAdjacentHTML('beforeend', item)
+            socket.auth.serverOffset = serverOffset // actualizamos al ultimo mensaje
         })
 
         form.addEventListener('submit', (e)=>{
