@@ -31,20 +31,24 @@ export class MovieModel {
   static async getById ({ id }) {
     try {
       const pool = await getConnection()
+      const resultGenre = await pool.request()
+        .input('value_id', mssql.VarChar, id)
+        .query('select g.name from genre g inner join movie_genre mg on g.id=mg.genre_id where mg.movie_id=convert(uniqueidentifier,@value_id)')
+      const nameGenre = []
+      resultGenre.recordset.forEach(x => { nameGenre.push(x.name) })
+      // console.log(nameGenre)
       const result = await pool.request()
         .input('value_id', mssql.VarChar, id)
         .query(
-          'select distinct m.id, m.title,m.[year],m.director,m.duration,m.rate,poster=CAST(m.poster as varchar(max)),' +
-              'genre=(select ge.name from genre ge ' +
-              'INNER JOIN movie_genre mgr on ge.id=mgr.genre_id ' +
-              'WHERE mgr.movie_id=m.id ' +
-              'for json PATH) ' +
+          'select distinct m.id, m.title,m.[year],m.director,m.duration,m.rate,poster=CAST(m.poster as varchar(max)) ' +
               'from movies m ' +
               'INNER JOIN movie_genre mg on m.id=mg.movie_id ' +
               'INNER JOIN genre g ON mg.genre_id=g.id ' +
               'WHERE m.id=convert(uniqueidentifier,@value_id)')
 
       pool.close()
+      result.recordset[0].newGenre = nameGenre
+      console.log(result.recordset)
       return result.recordset
     } catch (error) {
       console.error(error)
