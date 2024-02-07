@@ -41,28 +41,29 @@ io.on('connection', async (socket) => {
 
   socket.on('chat message', async (msg) => {
     let result
+    const username = socket.handshake.auth.username ?? 'anonymous'
     try {
       result = await db.execute({
-        sql: 'insert into messages(content) values (:msg)',
-        args: { msg }
+        sql: 'insert into messages(content, user) values (:msg, :username)',
+        args: { msg, username }
       })
     } catch (error) {
       console.log(error)
       return
     }
-    io.emit('chat message', msg, result.lastInsertRowid.toString())
+    io.emit('chat message', msg, result.lastInsertRowid.toString(), username)
   })
 
   // console.log(socket.handshake.auth) // para ver los mensajes puestos en el socket del cliente(html)
   if (!socket.recovered) { // recuperar los mensajes sin conexión
     try {
       const result = await db.execute({
-        sql: 'select id, content from messages where id > ?',
+        sql: 'select id, content, user from messages where id > ?',
         args: [socket.handshake.auth.serverOffset ?? 0]
       })
 
       result.rows.forEach(row => {
-        socket.emit('chat message', row.content, row.id.toString())
+        socket.emit('chat message', row.content, row.id.toString(), row.user)
       })
     } catch (error) {
       console.log(error)
