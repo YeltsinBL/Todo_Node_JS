@@ -107,3 +107,7 @@ Realizar una chat en tiempo real con socket.
 - Socket.io: para realizar las request en tiempo real.
 - @libsql/client: para usar la base de datos
 - dotenv: para leer variables de entorno
+
+## 07-AutenticacionUsuario
+
+Autenticación de Usuario, Sesión, Cookies y JWT

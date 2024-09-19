@@ -1,0 +1,15 @@
+{
+  "name": "07-autenticacionusuario",
+  "version": "1.0.0",
+  "description": "Autenticación de Usuario, Sesión, Cookies y JWT",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "YeltsinBL",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.21.0"
+  }
+}
