@@ -1,4 +1,6 @@
 import DBLOCAL from 'db-local'
+import bcrypt from 'bcrypt'
+import { SALT_ROUNDS } from './conf.js'
 
 const { Schema } = new DBLOCAL({ path: './db' })
 
@@ -9,7 +11,7 @@ const User = Schema('User', {
 })
 
 export class UserRepository {
-  static create ({ username, password }) {
+  static async create ({ username, password }) {
     // 1. Validar al username y password
     console.log(typeof username !== 'string')
     if (typeof username !== 'string') throw new Error('El usuario debe ser texto.')
@@ -22,10 +24,13 @@ export class UserRepository {
     if (user) throw new Error('El usuario ya existe.')
 
     const id = crypto.randomUUID()
+    // hashSync: bloquea el hilo principal
+    // const hashedPassword = bcrypt.hashSync(password, SALT_ROUNDS) // SALT_ROUNDS: numero significa que tanto se va a encriptar
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS)
     User.create({
       _id: id,
       username,
-      password
+      password: hashedPassword
     }).save()
     return id
   }

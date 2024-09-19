@@ -115,3 +115,4 @@ Autenticación de Usuario, Sesión, Cookies y JWT
 ### Dependencias
 
 - DB-Local: para crear una base de datos de prueba local
+- bcrypt: encriptar en un hash la contraseña
