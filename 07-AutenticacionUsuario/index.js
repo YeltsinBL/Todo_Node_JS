@@ -1,5 +1,5 @@
 import express from 'express'
-import { PORT } from './conf'
+import { PORT } from './conf.js'
 
 const app = express()
 
