@@ -111,3 +111,7 @@ Realizar una chat en tiempo real con socket.
 ## 07-AutenticacionUsuario
 
 Autenticación de Usuario, Sesión, Cookies y JWT
+
+### Dependencias
+
+- DB-Local: para crear una base de datos de prueba local
