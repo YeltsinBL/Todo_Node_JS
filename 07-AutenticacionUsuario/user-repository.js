@@ -11,10 +11,11 @@ const User = Schema('User', {
 export class UserRepository {
   static create ({ username, password }) {
     // 1. Validar al username y password
+    console.log(typeof username !== 'string')
     if (typeof username !== 'string') throw new Error('El usuario debe ser texto.')
     if (username.length < 3) throw new Error('El usuario debe tener mas de 3 caracteres.')
-    if (typeof password !== 'string') throw new Error('El usuario debe ser texto.')
-    if (password.length < 6) throw new Error('El usuario debe tener mas de 6 caracteres.')
+    if (typeof password !== 'string') throw new Error('El password debe ser texto.')
+    if (password.length < 6) throw new Error('El password debe tener mas de 6 caracteres.')
 
     // 2. Asegurarse que el username sea único
     const user = User.findOne({ username })
