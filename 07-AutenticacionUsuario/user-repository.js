@@ -32,9 +32,16 @@ export class UserRepository {
     return id
   }
 
-  static login ({ username, password }) {
+  static async login ({ username, password }) {
     Validation.username(username)
     Validation.password(password)
+
+    const user = User.findOne({ username })
+    if (!user) throw new Error('El usuario no existe')
+    const isValid = await bcrypt.compare(password, user.password)
+    if (!isValid) throw new Error('Contraseña incorrecta')
+    const { password: _, ...publicUser } = user
+    return publicUser
   }
 }
 
