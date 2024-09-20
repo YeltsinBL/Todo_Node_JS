@@ -114,5 +114,7 @@ Autenticación de Usuario, Sesión, Cookies y JWT
 
 ### Dependencias
 
-- DB-Local: para crear una base de datos de prueba local
-- bcrypt: encriptar en un hash la contraseña
+- DB-Local: para crear una base de datos de prueba local.
+- bcrypt: encriptar en un hash la contraseña.
+- jsonwebtoken: para crear el token a la sesión del usuario.
+- cookie-parser: facilita la posibilidad de modificar las cookies
