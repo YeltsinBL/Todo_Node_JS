@@ -70,7 +70,8 @@ app.post('/register', async (req, res) => {
   }
 })
 app.post('/logout', (req, res) => {
-
+  res.clearCookie('access_token')
+    .json({ message: 'Sesión Cerrada' })
 })
 app.post('/protected', (req, res) => {
   // si hay sesión del usuario funciona bien
