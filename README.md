@@ -118,3 +118,8 @@ Autenticación de Usuario, Sesión, Cookies y JWT
 - bcrypt: encriptar en un hash la contraseña.
 - jsonwebtoken: para crear el token a la sesión del usuario.
 - cookie-parser: facilita la posibilidad de modificar las cookies
+
+```sh
+# comando para generar una SECRET KEY
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
